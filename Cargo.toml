@@ -1,0 +1,10 @@
+[package]
+name = "replay_attack_rs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+egui = {version = "0.28.1"}
+egui_plot = {version = "0.28.1"}
+eframe = {version = "0.28.1", features = ["persistence"]}
+serde = {version = "1.0.210"}

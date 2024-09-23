@@ -7,10 +7,39 @@ enum PageTab {
     Signals,
 }
 
+struct SDRSettings {
+    pub center_frequency: f32,
+    pub sample_rate: f32,
+    pub tx_gain: u8,
+    pub rx_gain: u8,
+}
+
+impl Default for SDRSettings {
+    fn default() -> Self {
+        SDRSettings {
+            center_frequency: 915.0,
+            sample_rate: 15.0,
+            tx_gain: 1,
+            rx_gain: 1,
+        }
+    }
+}
+
 pub struct ReplayApp {
     pub(crate) temp_text_size: f32,
     pub(crate) text_size: f32,
     current_tab: PageTab,
+
+    // SDR Settings
+    pub(crate) sdr_settings: SDRSettings,
+    pub(crate) center_frequency: String, // mHz (1 mHz = 1000000 Hz)
+    pub(crate) sample_rate: String,      // mHz
+    pub(crate) tx_gain: String,
+    pub(crate) rx_gain: String,
+
+    // Attack Settings
+    pub(crate) repeat: u16,
+    pub(crate) intervale: f32, // seconds
 }
 
 impl ReplayApp {
@@ -32,7 +61,17 @@ impl Default for ReplayApp {
             temp_text_size: 1.0,
             text_size: 1.0,
             current_tab: PageTab::Monitor,
-        }
+
+            // SDR Settings
+            sdr_settings: SDRSettings::default(),
+            center_frequency: "915.0".to_string(),
+            sample_rate: "15.0".to_string(),
+            tx_gain: "1".to_string(),
+            rx_gain: "1".to_string(),
+
+            // Attack Settings
+            repeat: 0,
+            intervale: 5.0,        }
     }
 }
 

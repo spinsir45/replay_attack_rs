@@ -1,6 +1,6 @@
 mod gui;
 
-use gui::app::ReplayApp;
+use crate::gui::app::ReplayApp;
 
 fn main() {
     let native_options = eframe::NativeOptions::default();

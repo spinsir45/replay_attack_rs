@@ -1,4 +1,5 @@
 use eframe::egui;
+use crate::gui::monitor::MonitorMode;
 
 enum PageTab {
     Settings,
@@ -26,6 +27,7 @@ impl Default for SDRSettings {
 }
 
 pub struct ReplayApp {
+    // App Settings
     pub(crate) temp_text_size: f32,
     pub(crate) text_size: f32,
     current_tab: PageTab,
@@ -40,6 +42,9 @@ pub struct ReplayApp {
     // Attack Settings
     pub(crate) repeat: u16,
     pub(crate) intervale: f32, // seconds
+
+    // Monitor Settings
+    pub(crate) monitor_mode: MonitorMode,
 }
 
 impl ReplayApp {
@@ -71,7 +76,11 @@ impl Default for ReplayApp {
 
             // Attack Settings
             repeat: 0,
-            intervale: 5.0,        }
+            intervale: 5.0,
+
+            // Monitor Settings
+            monitor_mode: MonitorMode::Manual,
+        }
     }
 }
 

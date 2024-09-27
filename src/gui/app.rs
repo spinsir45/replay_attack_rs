@@ -1,5 +1,5 @@
 use eframe::egui;
-use crate::gui::monitor::MonitorMode;
+use crate::gui::monitor::{ MonitorMode, MonitorSettings };
 
 enum PageTab {
     Settings,
@@ -44,7 +44,8 @@ pub struct ReplayApp {
     pub(crate) intervale: f32, // seconds
 
     // Monitor Settings
-    pub(crate) monitor_mode: MonitorMode,
+    pub(crate) monitor_settings: MonitorSettings,
+    pub(crate) enable_auto_settings: bool,
 }
 
 impl ReplayApp {
@@ -79,7 +80,8 @@ impl Default for ReplayApp {
             intervale: 5.0,
 
             // Monitor Settings
-            monitor_mode: MonitorMode::Manual,
+            monitor_settings: MonitorSettings::default(),
+            enable_auto_settings: false,
         }
     }
 }

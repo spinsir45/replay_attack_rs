@@ -16,6 +16,7 @@ impl MonitorMode {
     }
 }
 
+#[derive(PartialEq)]
 pub struct MonitorSettings {
     mode: MonitorMode,
     time: f32,
@@ -38,7 +39,7 @@ impl Default for MonitorSettings {
 
 impl ReplayApp {
     pub fn monitor_tab(&mut self, _ctx: &egui::Context, ui: &mut egui::Ui) {
-        egui::TopBottomPanel::top("sdr_settings")
+        egui::TopBottomPanel::top("monitor_sdr_settings")
         .max_height(65.0)
         .show_inside(ui, |ui| {
             ui.heading("SDR Settings");
@@ -69,7 +70,7 @@ impl ReplayApp {
             ui.add_space(3.0);
         });
 
-        egui::SidePanel::left("monitor_plot")
+        egui::SidePanel::left("monitor_settings")
             .min_width(150.0)
             .resizable(false)
             .show_inside(ui, |ui| {

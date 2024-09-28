@@ -1,5 +1,6 @@
 use eframe::egui;
-use crate::gui::monitor::{ MonitorMode, MonitorSettings };
+use crate::gui::monitor::MonitorSettings;
+use crate::gui::attack::AttackSettings;
 
 enum PageTab {
     Settings,
@@ -40,8 +41,7 @@ pub struct ReplayApp {
     pub(crate) rx_gain: String,
 
     // Attack Settings
-    pub(crate) repeat: u16,
-    pub(crate) intervale: f32, // seconds
+    pub(crate) attack_settings: AttackSettings,
 
     // Monitor Settings
     pub(crate) monitor_settings: MonitorSettings,
@@ -76,8 +76,7 @@ impl Default for ReplayApp {
             rx_gain: "1".to_string(),
 
             // Attack Settings
-            repeat: 0,
-            intervale: 5.0,
+            attack_settings: AttackSettings::default(),
 
             // Monitor Settings
             monitor_settings: MonitorSettings::default(),
@@ -118,7 +117,7 @@ impl eframe::App for ReplayApp {
         egui::CentralPanel::default().show(ctx, |ui| {
             match self.current_tab {
                 PageTab::Monitor => self.monitor_tab(ctx, ui),
-                PageTab::Attack => self.attack_tab(ctx),
+                PageTab::Attack => self.attack_tab(ctx, ui),
                 PageTab::Settings => self.settings_tab(ctx),
                 PageTab::Signals => self.signals_tab(ctx),
             }

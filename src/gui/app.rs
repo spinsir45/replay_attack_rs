@@ -1,30 +1,13 @@
 use eframe::egui;
 use crate::gui::monitor::MonitorSettings;
 use crate::gui::attack::AttackSettings;
+use crate::backend::sdr::SDRSettings;
 
 enum PageTab {
     Settings,
     Monitor,
     Attack,
     Signals,
-}
-
-struct SDRSettings {
-    pub center_frequency: f32,
-    pub sample_rate: f32,
-    pub tx_gain: u8,
-    pub rx_gain: u8,
-}
-
-impl Default for SDRSettings {
-    fn default() -> Self {
-        SDRSettings {
-            center_frequency: 915.0,
-            sample_rate: 15.0,
-            tx_gain: 1,
-            rx_gain: 1,
-        }
-    }
 }
 
 pub struct ReplayApp {
@@ -119,7 +102,7 @@ impl eframe::App for ReplayApp {
                 PageTab::Monitor => self.monitor_tab(ctx, ui),
                 PageTab::Attack => self.attack_tab(ctx, ui),
                 PageTab::Settings => self.settings_tab(ctx),
-                PageTab::Signals => self.signals_tab(ctx),
+                PageTab::Signals => self.signals_tab(ctx, ui),
             }
         });
     }

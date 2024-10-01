@@ -1,4 +1,5 @@
 mod gui;
+mod backend;
 
 use crate::gui::app::ReplayApp;
 
